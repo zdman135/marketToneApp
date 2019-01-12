@@ -15,6 +15,36 @@ var firebaseConfig = {
 
   var database = firebase.database()
 
+
+
   database.ref().on("child_added" , function(childSnapshot) {
     console.log(childSnapshot , "childSnapshot")
   });
+
+
+  // Pushing relevant fields from newsAPI response to Firebase
+  function firebaseNewsPush(newsResponse) {
+    database.ref().push({
+      title: newsResponse.URL,
+      URL: newsResponse.URL,
+      description: newsResponse.Description,
+
+    })
+  }
+
+// Pushing relevant fields from Watson Tone Analyzer respnse to Firebase
+  function firebaseWatsonPush(watsonResponse) {
+    database.ref().push({
+      tonesObject: watsonResponse.Tones
+    })
+  }
+
+
+  // function firebaseAlphaPush(alphaResponse) {
+  //   database.ref().push({
+  //     symbol: alphaResponse[ "Global Quote" ][ "01. symbol"],
+  //     changePercent: alphaResponse[ "Global Quote" ][ "10. change percent"],
+  //   })
+
+  // }
+
