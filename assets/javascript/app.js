@@ -1,49 +1,62 @@
+//  constants
+var watstonAPIKeY = btoa('apikey:4183-tWTIj-xTstT8XVc4uQqRgJfZhHOLiJb5U8PvrxX');
+var newsAPIKey = '860ca082a90441caa0446fdf630130da';
+var placeHolderObject = {};
 
-// Initalize Variable template to be aligned with the html
-var searchTerm;
-var recordNum;
-var startYear;
-var endYear;
-var articleArray;
+var articlesTextForWatson;
 
+function analyzeTickerSymbol(tickerSymbol) {
+    getNewsArticles(tickerSymbol);
+}
 
-$(document).on("click", "#search-btn", function (event) {
-    event.preventDefault();
-    search();
-})
-
-function search() {
-    searchTerm = $("#search-term").val();
-    recordNum = $("#select-number").val();
-    // startYear = $("#start-year").val();
-    // endYear = $("#end-year").val();
-
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=6f875a93bea94a66ada56d27a190dc28&q=" + searchTerm; 
-
-
+function getToneOfArticle(articlesTextForWatson) {
     $.ajax({
-        url: queryURL,
-        method: "GET"
-    }) .then(function(response) {
-        articleArray = response.response.docs;
-
-        for (var i = 0; i < articleArray.length; i++) {
-            var article = $("<div>");
-            var header = $("<h2>").text(articleArray[i].headline.main);
-            var link = $("<a>").attr("href", articleArray[i].web_url);
-
-            link.append(header);
-            $(article).append(link);
-            $(".article-list").append(article);
-
-            console.log(articleArray[i]);
-
-        }
-    })
+        method: 'POST',
+        headers: {
+            'Authorization': 'Basic ' + watstonAPIKeY,
+            'Content-Type':'application/json'
+        },
+        url: 'https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21',
+        data: JSON.stringify(
+            {"text": articlesTextForWatson}
+        ),
+        dataType: 'json'
+      }).then(function(response) {
+        (response);
+      
+    }).catch(function(error) {
+          console.log(error);
+    });
 
 }
 
-$(document).on("click", "#clear", function() {
+function getNewsArticles(userSearchQuery) {
+    var searchQuery = 'q=' + userSearchQuery;
+    var sources = '&sources=' + 'the-wall-street-journal,bloomberg,business-insider,cnbc,the-verge,wired';
+    var apiKey = '&apiKey=' + newsAPIKey;
+    var queryURL = 'https://newsapi.org/v2/everything?' + searchQuery + sources + apiKey;
+    
+    var articleDescriptionArray = []
 
-        
-})
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+      })
+        .then(function(response) {
+            response.articles.forEach(function(element) {
+                articleDescriptionArray.push(element.description);
+            });
+
+            articlesTextForWatson = articleDescriptionArray.join(",");
+            getToneOfArticle(articlesTextForWatson);
+    });
+}
+
+$('#analyze-btn').on('click', function() {
+    var tickerSymbol= $('#tickerSymbol').val().trim();
+    analyzeTickerSymbol(tickerSymbol);
+
+});
+
+
+
