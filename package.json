@@ -1,0 +1,22 @@
+{
+  "name": "newsapp",
+  "version": "1.0.0",
+  "description": "group2_project1_watsonAPI",
+  "main": "firebase.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdman135/newsApp.git"
+  },
+  "author": "Group2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdman135/newsApp/issues"
+  },
+  "homepage": "https://github.com/zdman135/newsApp#readme",
+  "dependencies": {
+    "intrinio-sdk": "^1.1.2"
+  }
+}
