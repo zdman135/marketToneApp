@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MarketTone!</title>
+
+    <!-- using a reset css stylesheet -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+
+    <!-- materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- css for game -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- materialize for header -->
+    <div class="row">
+        <div class="col s12 m12" id="header-style">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <h1>Welcome to MarketTone!</h1>
+                </div>
+                <div class="card-action">
+                    <p> Powerd by IBM Watson TM </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="box">
+        <div class="row">
+            <div class="col s4 m4">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <p>Enter a ticker symbol to get started</p>
+                        <div class="row">
+                            <form class="col s12">
+                                <i class="material-icons prefix"></i>
+                                <!-- this is the ticker symbol -->
+                                <input id="tickerSymbol" type="text" class="validate" >
+                                <label for="icon_prefix"></label>
+                                <!-- this is analyze btn-->
+                                <a class="waves-effect waves-light btn" id="analyze-btn">Analyze</a>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s4 m2">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"></span>
+                            <p>OR</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 m4">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <!-- this is the btn to go to ibm watson site -->
+                                <a class="waves-effect waves-light btn" id="ibmWatson-btn">Click HERE</a>
+
+                                <span class="card-title">For a tone Analysis of top Ticker symbols curated by the
+                                    MarketTone team !!</span>
+                            </div>
+                            <div class="card-action">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- watson says response area  -->
+            <div class="row">
+                <div class="col s12 m12" id="watsonSays-style">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <h1>Watson Says :</h1>
+                        </div>
+                        <div class="card-action">
+                            <!-- this is the watson says btn -->
+                            <a class="waves-effect waves-light btn"id="watsonSays-btn ">Click HERE to see what waston Analyzed</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <footer class="page-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">SARK Creations</h5>
+                            <h6>© 2019</h6>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- jquery cdn -->
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
+            <!-- materialize javascript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script src="assets/app.js"></script>
+</body>
+
+</html>
