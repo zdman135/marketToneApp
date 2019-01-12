@@ -1,7 +1,24 @@
-/* css for styles */
+/* styles for each card*/
+#header-style {
+  text-align: center
+}
 
+#analyze-style {
+  text-align: center;
+}
+
+#tone-style {
+  text-align: center;
+}
+
+#watsonSays-style {
+  text-align: center;
+}
+/* footer format */
 .page-footer {
   background-color: #00334d;
   text-align: center;
   color: #ffffff;
+  clear: both;
+  width: 100%;
 }
