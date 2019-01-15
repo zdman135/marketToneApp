@@ -1,24 +1,31 @@
-/* styles for each card*/
-#header-style {
-  text-align: center
-}
-
-#analyze-style {
+h6 {
+  font-weight: inherit;
   text-align: center;
 }
-
-#tone-style {
+h1 {
+  font-weight: inherit;
+  font-size: 4.2rem;
+  line-height: 110%;
+   margin: 2.8rem;
   text-align: center;
 }
-
-#watsonSays-style {
-  text-align: center;
+#ibmWatson-btn
+{
+  left: 105px;
 }
-/* footer format */
+#analyze-btn
+{
+  left: 120px;
+}
+.page-footer .footer-copyright {
+  overflow: hidden;
+  min-height: 50px;
+  padding: 10px 0px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(51, 51, 51, 0.08);
+}
 .page-footer {
-  background-color: #00334d;
-  text-align: center;
-  color: #ffffff;
-  clear: both;
-  width: 100%;
+  padding-top: 20px;
+  color: #fff;
+  background-color: #ee6e73;
 }
