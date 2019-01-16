@@ -10,34 +10,52 @@ var watsonToneMapper = {
     confident: "buy",
     tentative: "hold"
 };
-
 var articlesTextForWatson;
 
-function analyzeTickerSymbol(tickerSymbol) {
-    getNewsArticles(tickerSymbol);
+function analyzeTickerSymbol(tickerSymbol, buttonId) {
+    getNewsArticles(tickerSymbol, buttonId);
 }
 
-function displayResultFromWatson(response) {
+function displayResultFromWatson(response, buttonId) {
     var tickerTone = response.document_tone.tones[0].tone_id;
-    console.log(tickerTone);
+    console.log(tickerTone, 'this is ticker tone');
+    console.log(buttonId);
     watsonToneMapper[tickerTone]
 
-    switch(watsonToneMapper[tickerTone]) {
-        case "buy":
-            $('#watson-result-picture').html('<img src="assets/images/buy-smiley.jpg">')
-          break;
-        case "sell":
-            console.log('it is selling');
-          break;
-        case "hold":
-            console.log('it is holding');
-          break;
-        default:
-            console.log('it is a hold');
-      }
+    if (buttonId === 'analyze-btn') {
+        switch(watsonToneMapper[tickerTone]) {
+            case "buy":
+                $('#watson-result').html('<img src="assets/images/buy-smiley.jpg">')
+              break;
+            case "sell":
+                $('#watson-result').html('<img src="assets/images/sell-smiley.jpg">')
+              break;
+            case "hold":
+                $('#watson-result').html('<img src="assets/images/hold-smiley.jpg">')
+              break;
+            default:
+                $('#watson-result').html('<img src="assets/images/hold-smiley.jpg">')
+          }
+    } else {
+        return watsonToneMapper[tickerTone];
+    }
 }
 
-function getToneOfArticle(articlesTextForWatson) {
+function faangAnalysis(buttonId) {
+    var fbStock = getNewsArticles("fb", buttonId);
+    var amznStock = getNewsArticles('amzn', buttonId);
+    var appleStock = getNewsArticles('aapl', buttonId);
+    var netflixStock = getNewsArticles('nflx', buttonId);
+    var googleStock = getNewsArticles('googl', buttonId);
+    console.log(fbStock);
+    console.log(amznStock);
+    console.log(appleStock);
+    console.log(netflixStock);
+    console.log(googleStock);
+
+}
+
+function getToneOfArticle(articlesTextForWatson, buttonId) {
     $.ajax({
         method: 'POST',
         headers: {
@@ -50,11 +68,11 @@ function getToneOfArticle(articlesTextForWatson) {
         ),
         dataType: 'json'
       }).then(function(response) {
-          displayResultFromWatson(response);
+          displayResultFromWatson(response, buttonId);
       })
 }
 
-function getNewsArticles(userSearchQuery) {
+function getNewsArticles(userSearchQuery, buttonId) {
     var searchQuery = 'q=' + userSearchQuery;
     var sources = '&sources=' + 'the-wall-street-journal,bloomberg,cnbc,the-verge,wired';
     var apiKey = '&apiKey=' + newsAPIKey;
@@ -79,7 +97,6 @@ function getNewsArticles(userSearchQuery) {
             });
 
             articlesTextForWatson = articleDescriptionArray.join(",");
-            getToneOfArticle(articlesTextForWatson);
             
             $("#watson-analysis").on("click", function() {
                 database.ref(userSearchQuery).on("child_added" , function(childSnapshot) {
@@ -87,6 +104,7 @@ function getNewsArticles(userSearchQuery) {
                 })
             })
 
+            getToneOfArticle(articlesTextForWatson, buttonId);
     });
 }
 
@@ -111,9 +129,12 @@ var userSearchDatabaseConfig = {
 
 $('#analyze-btn').on('click', function() {
     var tickerSymbol= $('#tickerSymbol').val().trim();
-    analyzeTickerSymbol(tickerSymbol);
+    var buttonId = $(this).attr('id');
+    analyzeTickerSymbol(tickerSymbol, buttonId);
 
 });
 
-
-
+$('#ibmWatson-btn').on('click', function() {
+    var buttonId = $(this).attr('id');
+    faangAnalysis(buttonId);
+});
