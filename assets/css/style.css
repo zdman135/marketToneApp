@@ -11,7 +11,7 @@ h1 {
 }
 #ibmWatson-btn
 {
-  left: 105px;
+ left:  120px;
 }
 #analyze-btn
 {
@@ -21,13 +21,10 @@ h1 {
   overflow: hidden;
   min-height: 50px;
   padding: 10px 0px;
-  color:#4aaaaa;
+  
   background-color: rgba(51, 51, 51, 0.08);
   
 }
-.page-footer orange{
-  height: 125px;
-}
-#index-banner{
-  height:125px;
+#watsonSays-btn{
+  right: 350px;
 }

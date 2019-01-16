@@ -4,11 +4,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Starter Template - Materialize</title>
+  <title>MarketTone</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel=“stylesheet” href="./assets/css/reset.css">
   <link href="./assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
@@ -19,7 +20,7 @@
       <br><br>
       <h1>Welcome to MarketTone!</h1>
       <div class="row center">
-        <h5 class="header col s12 light"> Powerd by IBM Watson TM </h5>
+        <h5 class="header col s12 light"> Powered by IBM Watson &trade; </h5>
       </div>
       <br><br>
     </div>
@@ -74,8 +75,14 @@
           <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park"  height="150" src="https://static1.squarespace.com/static/5a638d722aeba505429a461f/t/5ae876556d2a73fa2a42141a/1525184097540/watsonSpinSlow.gif">
         </div>
         <div class="col l3 s12">
-          <h5>Watson Says :</h5>
-          <a class="waves-effect waves-light btn" id="ibmWatson-btn">Click HERE to see what watson Analyzed</a>
+          <h5>Watson Says:</h5>
+          <!-- this is watson result -->
+          <div id="watson-result">
+
+          </div>
+
+          <!-- This is the watson sayes btn -->
+          <a class="waves-effect waves-light btn" id="watsonSays-btn">Click for details</a>
 
         </div>
         <div class="col l3 s12">
