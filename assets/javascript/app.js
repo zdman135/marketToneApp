@@ -56,7 +56,7 @@ function getToneOfArticle(articlesTextForWatson) {
 
 function getNewsArticles(userSearchQuery) {
     var searchQuery = 'q=' + userSearchQuery;
-    var sources = '&sources=' + 'the-wall-street-journal,bloomberg,business-insider,cnbc,the-verge,wired';
+    var sources = '&sources=' + 'the-wall-street-journal,bloomberg,cnbc,the-verge,wired';
     var apiKey = '&apiKey=' + newsAPIKey;
     var queryURL = 'https://newsapi.org/v2/everything?' + searchQuery + sources + apiKey;
     
@@ -68,13 +68,46 @@ function getNewsArticles(userSearchQuery) {
       })
         .then(function(response) {
             response.articles.forEach(function(element) {
+               var databaseRef = database.ref(userSearchQuery).push({
+                    title: element.title,
+                    URL: element.url,
+                    description: element.description
+                });
+                var entryKey = databaseRef.getKey();
+                console.log(entryKey , "entryKey")
                 articleDescriptionArray.push(element.description);
             });
 
             articlesTextForWatson = articleDescriptionArray.join(",");
             getToneOfArticle(articlesTextForWatson);
+            
+            $("#watson-analysis").on("click", function() {
+                database.ref(userSearchQuery).on("child_added" , function(childSnapshot) {
+                    console.log("exists")
+                })
+            })
+
     });
 }
+
+// AJAX REQUESTS ABOVE
+// FIREBASE CONFIG BELOW
+
+var userSearchDatabaseConfig = {
+    apiKey: "AIzaSyBBXXCcOQHTChGULdlDwY4JK7545B_A1XI",
+    authDomain: "marketwatchapp-35777.firebaseapp.com",
+    databaseURL: "https://marketwatchapp-35777.firebaseio.com",
+    projectId: "marketwatchapp-35777",
+    storageBucket: "marketwatchapp-35777.appspot.com",
+    messagingSenderId: "593066949760"
+  };
+
+  firebase.initializeApp(userSearchDatabaseConfig);
+
+  var database = firebase.database();
+
+// FIREBASE CONFIG ABOVE
+// CALLING FUNCTION BELOW
 
 $('#analyze-btn').on('click', function() {
     var tickerSymbol= $('#tickerSymbol').val().trim();
