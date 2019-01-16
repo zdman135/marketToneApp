@@ -9,19 +9,11 @@ h1 {
    margin: 2.8rem;
   text-align: center;
 }
-#ibmWatson-btn
-{
- left:  120px;
-}
-#analyze-btn
-{
-  left: 120px;
-}
+
 .page-footer .footer-copyright {
   overflow: hidden;
   min-height: 50px;
   padding: 10px 0px;
-  
   background-color: rgba(51, 51, 51, 0.08);
   
 }
