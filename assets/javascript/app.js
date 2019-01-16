@@ -68,13 +68,15 @@ function getNewsArticles(userSearchQuery) {
       })
         .then(function(response) {
             response.articles.forEach(function(element) {
-               var databaseRef = database.ref(userSearchQuery).push({
-                    title: element.title,
-                    URL: element.url,
-                    description: element.description
-                });
+                var databaseRef = database.ref(userSearchQuery).push()
                 var entryKey = databaseRef.getKey();
                 console.log(entryKey , "entryKey")
+                databaseRef.set({
+                    title: element.title,
+                    URL: element.url,
+                    description: element.description,
+                    key: entryKey
+                });
                 articleDescriptionArray.push(element.description);
             });
 
