@@ -1,12 +1,40 @@
 //  constants
 var watstonAPIKeY = btoa('apikey:4183-tWTIj-xTstT8XVc4uQqRgJfZhHOLiJb5U8PvrxX');
 var newsAPIKey = '860ca082a90441caa0446fdf630130da';
-var placeHolderObject = {};
+var watsonToneMapper = {
+    anger: "sell",
+    fear: "sell",
+    joy: "buy",
+    sadness: "sell",
+    analytical: "hold",
+    confident: "buy",
+    tentative: "hold"
+};
 
 var articlesTextForWatson;
 
 function analyzeTickerSymbol(tickerSymbol) {
     getNewsArticles(tickerSymbol);
+}
+
+function displayResultFromWatson(response) {
+    var tickerTone = response.document_tone.tones[0].tone_id;
+    console.log(tickerTone);
+    watsonToneMapper[tickerTone]
+
+    switch(watsonToneMapper[tickerTone]) {
+        case "buy":
+            $('#watson-result-picture').html('<img src="assets/images/buy-smiley.jpg">')
+          break;
+        case "sell":
+            console.log('it is selling');
+          break;
+        case "hold":
+            console.log('it is holding');
+          break;
+        default:
+            console.log('it is a hold');
+      }
 }
 
 function getToneOfArticle(articlesTextForWatson) {
@@ -22,12 +50,8 @@ function getToneOfArticle(articlesTextForWatson) {
         ),
         dataType: 'json'
       }).then(function(response) {
-        (response);
-      
-    }).catch(function(error) {
-          console.log(error);
-    });
-
+          displayResultFromWatson(response);
+      })
 }
 
 function getNewsArticles(userSearchQuery) {
