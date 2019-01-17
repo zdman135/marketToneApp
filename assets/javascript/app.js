@@ -10,6 +10,7 @@ var watsonToneMapper = {
     confident: "buy",
     tentative: "hold"
 };
+var keyHolder = []
 
 var articlesTextForWatson;
 
@@ -70,6 +71,7 @@ function getNewsArticles(userSearchQuery) {
             response.articles.forEach(function(element) {
                 var databaseRef = database.ref(userSearchQuery).push()
                 var entryKey = databaseRef.getKey();
+                keyHolder.push(entryKey)
                 console.log(entryKey , "entryKey")
                 databaseRef.set({
                     title: element.title,
@@ -79,13 +81,15 @@ function getNewsArticles(userSearchQuery) {
                 });
                 articleDescriptionArray.push(element.description);
             });
-
+            console.log(keyHolder , "keyHolder after keyPush")
             articlesTextForWatson = articleDescriptionArray.join(",");
             getToneOfArticle(articlesTextForWatson);
             
-            $("#watson-analysis").on("click", function() {
-                database.ref(userSearchQuery).on("child_added" , function(childSnapshot) {
-                    console.log("exists")
+            $("#analyze-btn").on("click", function() { //replace analyze-btn with watson-analysis
+                console.log("clicked")
+                database.ref(userSearchQuery + "/" + element).on("value" , function(snapshot) { //element added for use when put in foreach
+                    console.log(snapshot.val() , "ss") //working but need to add key from keyHolder with foreach to ref to access data
+                    
                 })
             })
 
@@ -109,6 +113,51 @@ var userSearchDatabaseConfig = {
   var database = firebase.database();
 
 // FIREBASE CONFIG ABOVE
+//Table Creation Function
+function showNewsArticles(firebaseSnapshot) {
+    // var valURL = firebaseSnapshot.val().URL probably not needed directly
+    var valTitle = firebaseSnapshot.val().title
+    var valDescription = firebaseSnapshot.val().description
+
+    var buttonURL = $("<a>")
+    buttonURL.addClass("waves-effect")
+    buttonURL.addClass("waves-light")
+    buttonURL.addClass("btn")
+    buttonURL.text("Link to Article")
+    buttonURL.data("fbkey" , firebaseSnapshot.val().key)
+
+    var headArray = ["Title" , "Description" , "Link"]
+    var dataArray = [valTitle , valDescription , buttonURL]
+
+    var newTable = $("<table>")
+    var newThead = $("<thead>")
+    var newBody = $("<tbody>")
+    var headRow = $("<tr>")
+    var bodyRow = $("<tr>")
+
+
+    // need to separate this into a new function, to only make one table then invoke function to fill it 
+    headArray.forEach(function(element) {
+        var newHead = $("<th>")
+        newHead.text(element) 
+        headRow.append(newHead)
+    })
+    newThead.append(headRow)
+    newTable.append(newThead)
+
+    //use this with foreach to populate table dynamically 
+
+    dataArray.forEach(function(element) {
+        var newData = $("<td>")
+        newData.html(element)
+        bodyRow.append(newData)
+
+    })
+    newBody.append(bodyRow)
+    newTable.append(newBody)
+
+}
+
 // CALLING FUNCTION BELOW
 
 $('#analyze-btn').on('click', function() {
@@ -116,6 +165,3 @@ $('#analyze-btn').on('click', function() {
     analyzeTickerSymbol(tickerSymbol);
 
 });
-
-
-
