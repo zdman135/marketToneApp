@@ -53,8 +53,8 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <!-- this is the btn to go to ibm watson site -->
-            <h5 class="center">For a tone Analysis of top Ticker symbols curated by the
-              MarketTone team</h5>
+            <h5 class="center"> Get the current FAANG (FB, AAPL, AMZN, NFLX, GOOG) MarketTone!</h5>
+
             <br><br><br><br>
             <a class="waves-effect waves-light btn" id="ibmWatson-btn">Click HERE</a>
           </div>
@@ -69,7 +69,7 @@
       <div class="container">
         <div class="row">
           <div class="col 8 s8">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park"  height="150" src="https://static1.squarespace.com/static/5a638d722aeba505429a461f/t/5ae876556d2a73fa2a42141a/1525184097540/watsonSpinSlow.gif">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park"  height="150" src="assets/images/watsonSpinSlow.gif">
           </div>
           <div class="col l3 s12">
             <h5>Watson Says:</h5>
@@ -77,9 +77,6 @@
             <div id="watson-result">
   
             </div>  
-          </div>
-          <div class="col l3 s12 center-box">
-  
           </div>
         </div>
 
@@ -89,6 +86,12 @@
         </div>
 
       </div>
+
+      <container id="watson-table">
+          <div id="watston-analysis-result" class="col l3 s12">
+          </div>
+      </container>
+
       <!-- footer -->
       <div class="footer-copyright">
         <div class="container">
@@ -97,6 +100,7 @@
       </div>
     </footer>
 
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="assets/javascript/app.js"></script>
 
