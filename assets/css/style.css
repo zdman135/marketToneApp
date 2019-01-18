@@ -21,9 +21,13 @@ h1 {
   padding: 15px;
 }
 
+#results-table {
+  margin: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  [class*="html"] {
+  [class*="col-"] {
     width: 100%;
   }
 }
