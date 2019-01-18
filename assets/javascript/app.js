@@ -114,7 +114,7 @@ function getNewsArticles(userSearchQuery, buttonId) {
 
 // firebase related functions
 function showNewsArticles(userSearchQuery) {
-    var headArray = ["Title" , "Description" , "Link"]
+    var headArray = ["Title" , "Description" , "Article"]
 
     var newTable = $('<table id="results-table" class="striped">')
     var newThead = $("<thead>")
@@ -154,7 +154,7 @@ function addArticleToTable(firebaseKey , userSearchQuery) {
         //button to hide actual URL text for cleanliness
         var buttonURL = $("<a>")
         buttonURL.attr("href" , valURL)
-        buttonURL.text("Link to Article")
+        buttonURL.text("Article")
         buttonURL.data("fbkey" , firebaseKey)
 
         var dataArray = [valTitle , valDescription , buttonURL]
@@ -174,21 +174,27 @@ function addArticleToTable(firebaseKey , userSearchQuery) {
 }
 
 firebase.initializeApp(userSearchDatabaseConfig);
+
 var database = firebase.database();
 
 $('#analyze-btn').on('click', function() {
+
     var tickerSymbol= $('#tickerSymbol').val().trim();
     searchedQuery = tickerSymbol;
     var buttonId = $(this).attr('id');
     analyzeTickerSymbol(tickerSymbol, buttonId);
+
 });
 
 $('#ibmWatson-btn').on('click', function() {
+
     var buttonId = $(this).attr('id');
     faangAnalysis(buttonId);
+
 });
 
 $("#watson-analysis").on("click", function() {
+
     if (searchedQuery === "") {
         console.log("no search was done");
     } else {
@@ -196,3 +202,9 @@ $("#watson-analysis").on("click", function() {
     }
 
 })
+
+$("#reset-analysis").on("click" , function() {
+
+    location.reload(true)
+
+});
