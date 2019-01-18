@@ -25,7 +25,8 @@ function displayResultFromWatson(response) {
 
     switch(watsonToneMapper[tickerTone]) {
         case "buy":
-            $('#watson-result-picture').html('<img src="assets/images/buy-smiley.jpg">')
+            // $('#watson-result-picture').html('<img src="assets/images/buy-smiley.jpg">')
+            console.log("it is buy")
           break;
         case "sell":
             console.log('it is selling');
@@ -147,24 +148,28 @@ function addArticleToTable(firebaseKey , userSearchQuery) {
         var snapshotVal = snapshot.val()
         var valTitle = snapshotVal.title
         var valDescription = snapshotVal.description
+        var valURL = snapshotVal.URL
         // var valURL = database.ref(userSearchQuery + "/" + firebaseKey).val().URL
         console.log(valTitle , "valTitle database ref test")
-        var dataArray = [valTitle , valDescription , buttonURL]
+        
    
         //button to hide actual URL text for cleanliness
         var buttonURL = $("<a>")
-        buttonURL.addClass("waves-effect")
-        buttonURL.addClass("waves-light")
-        buttonURL.addClass("btn")
+        // buttonURL.addClass("waves-effect")
+        // buttonURL.addClass("waves-light")
+        // buttonURL.addClass("btn")
+        buttonURL.attr("href" , valURL)
         buttonURL.text("Link to Article")
         buttonURL.data("fbkey" , firebaseKey)
+
+        var dataArray = [valTitle , valDescription , buttonURL]
 
         var bodyRow = $("<tr>")
 
 
         dataArray.forEach(function(element) {
             var newData = $("<td>")
-            newData.text(element)
+            newData.html(element)
             bodyRow.append(newData)
 
         })
