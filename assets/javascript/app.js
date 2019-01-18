@@ -87,10 +87,7 @@ function getNewsArticles(userSearchQuery) {
             
             $("#analyze-btn").on("click", function() { //replace analyze-btn with watson-analysis
                 console.log("clicked")
-                database.ref(userSearchQuery + "/" + element).on("value" , function(snapshot) { //element added for use when put in foreach
-                    console.log(snapshot.val() , "ss") //working but need to add key from keyHolder with foreach to ref to access data
-                    
-                })
+                showNewsArticles(userSearchQuery)
             })
 
     });
@@ -114,27 +111,15 @@ var userSearchDatabaseConfig = {
 
 // FIREBASE CONFIG ABOVE
 //Table Creation Function
-function showNewsArticles(firebaseSnapshot) {
-    // var valURL = firebaseSnapshot.val().URL probably not needed directly
-    var valTitle = firebaseSnapshot.val().title
-    var valDescription = firebaseSnapshot.val().description
-
-    var buttonURL = $("<a>")
-    buttonURL.addClass("waves-effect")
-    buttonURL.addClass("waves-light")
-    buttonURL.addClass("btn")
-    buttonURL.text("Link to Article")
-    buttonURL.data("fbkey" , firebaseSnapshot.val().key)
+function showNewsArticles(userSearchQuery) {
+   
 
     var headArray = ["Title" , "Description" , "Link"]
-    var dataArray = [valTitle , valDescription , buttonURL]
 
     var newTable = $("<table>")
     var newThead = $("<thead>")
     var newBody = $("<tbody>")
     var headRow = $("<tr>")
-    var bodyRow = $("<tr>")
-
 
     // need to separate this into a new function, to only make one table then invoke function to fill it 
     headArray.forEach(function(element) {
@@ -144,18 +129,46 @@ function showNewsArticles(firebaseSnapshot) {
     })
     newThead.append(headRow)
     newTable.append(newThead)
-
-    //use this with foreach to populate table dynamically 
-
-    dataArray.forEach(function(element) {
-        var newData = $("<td>")
-        newData.html(element)
-        bodyRow.append(newData)
-
-    })
-    newBody.append(bodyRow)
+    newBody.addClass("articleBody")
     newTable.append(newBody)
 
+    keyHolder.forEach(function(element) {
+        addArticleToTable(element , userSearchQuery)
+    })
+
+    // $(".articleBody").append(newBody) dont think needed twice if done in addArticleToTable
+    $("#watson-result-picture").append(newTable)
+}
+
+function addArticleToTable(firebaseKey , userSearchQuery) {
+
+    database.ref(userSearchQuery + "/" + firebaseKey).on("value" , function(snapshot) { //element added for use when put in foreach
+        console.log(snapshot.val() , "ss") }); //working but need to add key from keyHolder with foreach to ref to access data
+        var snapshotVal = snapshot.val()
+        var valTitle = snapshotVal.title
+        var valDescription = snapshotVal.description
+        // var valURL = database.ref(userSearchQuery + "/" + firebaseKey).val().URL
+        console.log(valTitle , "valTitle database ref test")
+        var dataArray = [valTitle , valDescription , buttonURL]
+   
+        //button to hide actual URL text for cleanliness
+        var buttonURL = $("<a>")
+        buttonURL.addClass("waves-effect")
+        buttonURL.addClass("waves-light")
+        buttonURL.addClass("btn")
+        buttonURL.text("Link to Article")
+        buttonURL.data("fbkey" , firebaseKey)
+
+        var bodyRow = $("<tr>")
+
+
+        dataArray.forEach(function(element) {
+            var newData = $("<td>")
+            newData.html(element)
+            bodyRow.append(newData)
+
+        })
+        newBody.append(bodyRow)
 }
 
 // CALLING FUNCTION BELOW
