@@ -1,0 +1,33 @@
+h6 {
+  font-weight: inherit;
+  text-align: center;
+}
+
+h1 {
+  font-weight: inherit;
+  font-size: 4.2rem;
+  line-height: 110%;
+  margin: 2.8rem;
+  text-align: center;
+}
+
+.page-footer .footer-copyright {
+  overflow: hidden;
+  min-height: 50px;
+  background-color: #FF8C00;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  padding: 15px;
+}
+
+#results-table {
+  margin: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}

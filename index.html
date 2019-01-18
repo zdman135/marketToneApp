@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>MarketTone!</title>
+
+  <link rel=“stylesheet” href="assets/css/reset.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1>Welcome to MarketTone!</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"><b>Powered by IBM Watson &trade;</b></h5>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h5 class="center">Enter a ticker symbol to get started</h5>
+            <i class="material-icons prefix"></i>
+            <!-- this is the ticker symbol -->
+            <input id="tickerSymbol" type="text" class="validate">
+            <label for="icon_prefix"></label>
+            <br><br>
+            <!-- this is analyze btn-->
+            <a class="waves-effect waves-light btn" id="analyze-btn">Analyze</a>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <br><br>
+            <h5 class="center">OR</h5>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <!-- this is the btn to go to ibm watson site -->
+            <h5 class="center"> Get the current FAANG (FB, AAPL, AMZN, NFLX, GOOG) MarketTone!</h5>
+            <br><br><br><br>
+            <a class="waves-effect waves-light btn" id="ibmWatson-btn">Click HERE</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col 8 s8">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park"  height="150" src="assets/images/watsonSpinSlow.gif">
+          </div>
+          <div class="col l3 s12">
+            <h5>Watson Says:</h5>
+            <!-- this is watson result -->
+            <div id="watson-result">
+  
+            </div>  
+          </div>
+        </div>
+
+        <div id="div" class="row center">
+            <a id="watson-analysis" class="waves-effect waves-light btn-large"><i class="material-icons 
+            right">cloud</i>Watson Analysis</a>
+        </div>
+
+      </div>
+
+      <container id="watson-table">
+          <div id="watston-analysis-result" class="col l3 s12">
+          </div>
+      </container>
+
+      <!-- footer -->
+      <div class="footer-copyright">
+        <div class="container">
+          <h6>SARK Creations © 2019</h6>
+        </div>
+      </div>
+    </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
