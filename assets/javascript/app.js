@@ -143,7 +143,7 @@ function showNewsArticles(userSearchQuery) {
 function addArticleToTable(firebaseKey , userSearchQuery) {
 
     database.ref(userSearchQuery + "/" + firebaseKey).on("value" , function(snapshot) { //element added for use when put in foreach
-        console.log(snapshot.val() , "ss") }); //working but need to add key from keyHolder with foreach to ref to access data
+        console.log(snapshot.val() , "ss") //working but need to add key from keyHolder with foreach to ref to access data
         var snapshotVal = snapshot.val()
         var valTitle = snapshotVal.title
         var valDescription = snapshotVal.description
@@ -169,6 +169,7 @@ function addArticleToTable(firebaseKey , userSearchQuery) {
 
         })
         newBody.append(bodyRow)
+    }); 
 }
 
 // CALLING FUNCTION BELOW
