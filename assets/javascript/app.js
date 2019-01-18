@@ -164,11 +164,12 @@ function addArticleToTable(firebaseKey , userSearchQuery) {
 
         dataArray.forEach(function(element) {
             var newData = $("<td>")
-            newData.html(element)
+            newData.text(element)
             bodyRow.append(newData)
 
         })
-        newBody.append(bodyRow)
+        console.log($('.articleBody') , "aB");
+        $('.articleBody').append(bodyRow)
     }); 
 }
 
