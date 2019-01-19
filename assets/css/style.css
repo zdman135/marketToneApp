@@ -1,3 +1,7 @@
+body {
+  background-color: #FF8C00;
+}
+
 h6 {
   font-weight: inherit;
   text-align: center;
@@ -11,6 +15,11 @@ h1 {
   text-align: center;
 }
 
+.footer-bg-color {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
 .page-footer .footer-copyright {
   overflow: hidden;
   min-height: 50px;
@@ -22,7 +31,35 @@ h1 {
 }
 
 #results-table {
-  margin: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#watson-table {
+  width: 90%;
+}
+
+th, td {
+  color: black;
+  padding: 8px;
+}
+
+th {
+  color: #4aaaaa;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #4aaaaa;
+}
+#result-pic{
+
+  width: 150px;  
+}
+
+#watson-logo-gif {
+  height: 125px;
 }
 
 @media only screen and (max-width: 768px) {
