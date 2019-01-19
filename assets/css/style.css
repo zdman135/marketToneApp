@@ -1,3 +1,7 @@
+body {
+  background-color: #FF8C00;
+}
+
 h6 {
   font-weight: inherit;
   text-align: center;
@@ -9,6 +13,11 @@ h1 {
   line-height: 110%;
   margin: 2.8rem;
   text-align: center;
+}
+
+.footer-bg-color {
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 .page-footer .footer-copyright {
@@ -46,9 +55,11 @@ a {
 }
 #result-pic{
 
-  width: 250px;
-  height: 250px;
-  
+  width: 150px;  
+}
+
+#watson-logo-gif {
+  height: 125px;
 }
 
 @media only screen and (max-width: 768px) {
