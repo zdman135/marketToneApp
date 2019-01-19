@@ -44,16 +44,16 @@ function displayResultFromWatson(response, buttonId) {
 
     switch(watsonToneMapper[tickerTone]) {
         case "buy":
-            $('#watson-result').html('<img src="assets/images/buy-smiley.jpg">')
+            $('#watson-result').html('<p><h3>BUY</h3></p><img id="result-pic" src="assets/images/buy-smiley.gif">')
             break;
         case "sell":
-            $('#watson-result').html('<img src="assets/images/sell-smiley.jpg">')
+            $('#watson-result').html('<p><h3>SELL</h3></p><img id="result-pic" src="assets/images/sell-smiley.gif">')
             break;
         case "hold":
-            $('#watson-result').html('<img src="assets/images/hold-smiley.png">')
+            $('#watson-result').html('<p><h3>HOLD</h3></p><img id="result-pic" src="assets/images/hold-smiley.gif">')
             break;
         default:
-            $('#watson-result').html('<img src="assets/images/hold-smiley.png">')
+            $('#watson-result').html('<p><h3>HOLD</h3></p><img id="result-pic" src="assets/images/hold-smiley.gif">')
         }
 }
 
