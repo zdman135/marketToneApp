@@ -17,3 +17,9 @@ The app also has an option to display a list of news articles that were sent to 
 1. At this point, you may click on the Watson Analysis button. which will display all the news articles fed into Watons's Tone Analyzer.
 
 Link to App - https://zdman135.github.io/marketToneApp/
+
+### Additional Notes:
+
+1. The key issue about this project was to find the right APIs that will provide me the proper data needed to complete the project.
+
+1. Once the proper APIs were found, it was essentially a puzzle string everything together.
