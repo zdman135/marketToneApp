@@ -1,5 +1,5 @@
 body {
-  background-color: #FF8C00;
+  background-color: white;
 }
 
 h6 {
@@ -67,4 +67,9 @@ a {
   [class*="col-"] {
     width: 100%;
   }
+}
+p{
+  text-indent: 50px;
+  text-align: justify;
+  letter-spacing: 3px;
 }
